@@ -121,7 +121,11 @@ func parsePostgreSQLMetadata(config *scalersconfig.ScalerConfig) (*postgreSQLMet
 			return nil, err
 		}
 
-		var password string
+		password, err := GetFromAuthOrMeta(config, "password")
+		if err != nil {
+			return nil, err
+		}
+
 		if config.AuthParams["password"] != "" {
 			password = config.AuthParams["password"]
 		} else if config.TriggerMetadata["passwordFromEnv"] != "" {

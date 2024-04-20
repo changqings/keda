@@ -1,0 +1,9 @@
+FROM debian:bookworm
+
+WORKDIR /
+
+USER 65532:65532
+
+COPY bin/keda .
+
+ENTRYPOINT ["/keda", "--zap-log-level=info", "--zap-encoder=console"]
