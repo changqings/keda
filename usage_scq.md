@@ -1,9 +1,12 @@
 ## example usage by scq `2024-04-20`
 
-## if use metadata.password, it will not work, so use secret is a better and correct way.
-## hpa use external
-## https://github.com/kubernetes/design-proposals-archive/blob/main/instrumentation/external-metrics-api.md,`/apis/external.metrics.k8s.io/v1beta1/namespaces/<namespace_name>/<metric_name>?labelSelector=<selector>`
+if use metadata.password, it will not work, so use secret is a better and correct way.
 
+## hpa use external
+```bash
+https://github.com/kubernetes/design-proposals-archive/blob/main/instrumentation/external-metrics-api.md,`/apis/external.metrics.k8s.io/v1beta1/namespaces/<namespace_name>/<metric_name>?labelSelector=<selector>`
+```
+## 获取注册的external.metrics
 ```bash
 shenchangqing@master:~$ kubectl get --raw '/apis/external.metrics.k8s.io/v1beta1/namespaces/default/s0-postgresql?labelSelector=scaledobject.keda.sh/name=nginx'
 {"kind":"ExternalMetricValueList","apiVersion":"external.metrics.k8s.io/v1beta1","metadata":{},"items":[{"metricName":"s0-postgresql","metricLabels":null,"timestamp":"2024-04-20T08:04:30Z","value":"2"}]}
